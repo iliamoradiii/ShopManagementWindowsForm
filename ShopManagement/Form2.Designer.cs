@@ -171,6 +171,7 @@
             AddNewOrder.TabIndex = 8;
             AddNewOrder.Text = "Add New Order";
             AddNewOrder.UseVisualStyleBackColor = true;
+            AddNewOrder.Click += AddNewOrder_Click;
             // 
             // DoTheTest
             // 
@@ -178,7 +179,7 @@
             DoTheTest.Name = "DoTheTest";
             DoTheTest.Size = new Size(302, 29);
             DoTheTest.TabIndex = 9;
-            DoTheTest.Text = "Lets Do the Face !";
+            DoTheTest.Text = "Cusom Function";
             DoTheTest.UseVisualStyleBackColor = true;
             DoTheTest.Click += DoTheTest_Click;
             // 

@@ -30,35 +30,6 @@ namespace ShopManagement
         {
             InitializeComponent();
         }
-
-        //private void UpdateOrderList()
-        //{
-        //    DatabaseContext = null;
-        //    OrdersListBox.DataSource = null;
-        //    try
-        //    {
-        //        DatabaseContext = new DatabaseContext();
-        //        var UserOrders = DatabaseContext.Orders.Where(current => current.User.ID == CurrentUser.ID).ToList();
-
-
-        //        OrdersListBox.ValueMember = "OrderID";
-        //        OrdersListBox.DisplayMember = "OrderID";
-        //        OrdersListBox.DataSource = UserOrders;
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error in Form2 : " + ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        if (DatabaseContext != null)
-        //        {
-        //            DatabaseContext.Dispose();
-        //            DatabaseContext = null;
-        //        }
-        //    }
-        //}
         private void LogoutBtn_Click(object sender, EventArgs e)
         {
             Username = string.Empty;
@@ -115,56 +86,67 @@ namespace ShopManagement
 
         private void DoTheTest_Click(object sender, EventArgs e)
         {
-            //DatabaseContext = null;
+            DatabaseContext = null;
 
-            //try
-            //{
-            //    DatabaseContext = new DatabaseContext();
+            try
+            {
+                DatabaseContext = new DatabaseContext();
 
-            //    var CurrentUser = DatabaseContext.Users.Where(current => current.UserName == Username && current.Password == Password).ToList().FirstOrDefault() ?? new Models.User();
-            //    var phoneCategoryObj = DatabaseContext.Categories.Where(current => current.Name == "Phone Category").ToList().FirstOrDefault() ?? new Category();
-            //    var Iphone13Promax = DatabaseContext.Products.Where(current => current.Name == "IPhone 13 promax").ToList().FirstOrDefault() ?? new Product();
+                var CurrentUser = DatabaseContext.Users.Where(current => current.UserName == Username && current.Password == Password).ToList().FirstOrDefault() ?? new Models.User();
+                var CustomeCategory = DatabaseContext.Categories.Where(current => current.Name == "Laptop").ToList().FirstOrDefault() ?? new Category();
+                //var Iphone13Promax = DatabaseContext.Products.Where(current => current.Name == "IPhone 13 promax").ToList().FirstOrDefault() ?? new Product();
 
-            //    #region Add New Order
-            //    //Order order1 = new Order();
-            //    //order1.User = CurrentUser;
+                #region Add New Order
+                //Order order1 = new Order();
+                //order1.User = CurrentUser;
 
-            //    //order1.Products = new List<Product>();
+                //order1.Products = new List<Product>();
 
-            //    //order1.Products.Add(Iphone13Promax);
+                //order1.Products.Add(Iphone13Promax);
 
-            //    //DatabaseContext.Orders.Add(order1);
+                //DatabaseContext.Orders.Add(order1);
 
-            //    //DatabaseContext.SaveChanges();
-            //    #endregion
+                //DatabaseContext.SaveChanges();
+                #endregion
 
-            //    #region Add New Product
-            //    Product product = new Product();
-            //    product.Name = "IPhone xs max";
-            //    product.Description = "this description for iphone xs max";
-            //    product.Category = phoneCategoryObj;
-            //    product.Price = 200;
-            //    product.PicName = " ";
-            //    product.Orders = new List<Order>();
+                #region Add New Product
+                //Product product = new Product();
+                //product.Name = "Asus VivoBook";
+                //product.Description = "this description for Asus VivoBook";
+                //product.Category = CustomeCategory;
+                //product.Price = 500;
+                //product.PicName = " ";
+                //product.Orders = new List<Order>();
 
-            //    DatabaseContext.Products.Add(product);
+                //DatabaseContext.Products.Add(product);
 
-            //    DatabaseContext.SaveChanges();
-            //    #endregion
+                //DatabaseContext.SaveChanges();
+                #endregion
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error in Form2 : " + ex.Message);
-            //}
-            //finally
-            //{
-            //    if (DatabaseContext != null)
-            //    {
-            //        DatabaseContext.Dispose();
-            //        DatabaseContext = null;
-            //    }
-            //}
+                #region New Category
+                Category category = new Category();
+
+                category.Name = "Laptop";
+                category.Products = new List<Product>();
+
+                DatabaseContext.Categories.Add(category);
+
+                DatabaseContext.SaveChanges();
+
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error in Form2 : " + ex.Message);
+            }
+            finally
+            {
+                if (DatabaseContext != null)
+                {
+                    DatabaseContext.Dispose();
+                    DatabaseContext = null;
+                }
+            }
         }
 
         private void ProductsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -278,5 +260,21 @@ namespace ShopManagement
 
         }
 
+        private void AddNewOrder_Click(object sender, EventArgs e)
+        {
+
+            DatabaseContext DatabaseContext = new DatabaseContext();
+
+            var user = DatabaseContext.Users.Where(current => current.UserName == Username && current.Password == Password).ToList().FirstOrDefault();
+
+            Order NewOrder = new Order();
+
+            NewOrder.User = user;
+            NewOrder.Products = new List<Models.Product>();
+
+            DatabaseContext.Orders.Add(NewOrder);
+            DatabaseContext.SaveChanges();
+
+        }
     }
 }
