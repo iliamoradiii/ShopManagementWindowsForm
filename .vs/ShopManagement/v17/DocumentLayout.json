@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\programming\\Asp.net Core\\EF ( EntityFrameWork )\\ShopManagement\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{31887027-439C-4597-A591-339FA8DFEA5F}|ShopManagement\\ShopManagement.csproj|e:\\programming\\asp.net core\\ef ( entityframework )\\shopmanagement\\shopmanagement\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{31887027-439C-4597-A591-339FA8DFEA5F}|ShopManagement\\ShopManagement.csproj|solutionrelative:shopmanagement\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E03B0C5-47E7-4F7D-A517-48FF6EE60648}|Models\\Models.csproj|e:\\programming\\asp.net core\\ef ( entityframework )\\shopmanagement\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E03B0C5-47E7-4F7D-A517-48FF6EE60648}|Models\\Models.csproj|solutionrelative:models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E03B0C5-47E7-4F7D-A517-48FF6EE60648}|Models\\Models.csproj|e:\\programming\\asp.net core\\ef ( entityframework )\\shopmanagement\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E03B0C5-47E7-4F7D-A517-48FF6EE60648}|Models\\Models.csproj|solutionrelative:models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31887027-439C-4597-A591-339FA8DFEA5F}|ShopManagement\\ShopManagement.csproj|e:\\programming\\asp.net core\\ef ( entityframework )\\shopmanagement\\shopmanagement\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31887027-439C-4597-A591-339FA8DFEA5F}|ShopManagement\\ShopManagement.csproj|solutionrelative:shopmanagement\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 195,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form2.cs [Design]",
+              "DocumentMoniker": "E:\\programming\\Asp.net Core\\EF ( EntityFrameWork )\\ShopManagement\\ShopManagement\\Form2.cs",
+              "RelativeDocumentMoniker": "ShopManagement\\Form2.cs",
+              "ToolTip": "E:\\programming\\Asp.net Core\\EF ( EntityFrameWork )\\ShopManagement\\ShopManagement\\Form2.cs [Design]",
+              "RelativeToolTip": "ShopManagement\\Form2.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-23T15:11:39.546Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form2.cs",
+              "DocumentMoniker": "E:\\programming\\Asp.net Core\\EF ( EntityFrameWork )\\ShopManagement\\ShopManagement\\Form2.cs",
+              "RelativeDocumentMoniker": "ShopManagement\\Form2.cs",
+              "ToolTip": "E:\\programming\\Asp.net Core\\EF ( EntityFrameWork )\\ShopManagement\\ShopManagement\\Form2.cs",
+              "RelativeToolTip": "ShopManagement\\Form2.cs",
+              "ViewState": "AQIAAD0AAAAAAAAAAAA5wPIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-23T12:39:17.444Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Product.cs",
+              "DocumentMoniker": "E:\\programming\\Asp.net Core\\EF ( EntityFrameWork )\\ShopManagement\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "Models\\Product.cs",
+              "ToolTip": "E:\\programming\\Asp.net Core\\EF ( EntityFrameWork )\\ShopManagement\\Models\\Product.cs",
+              "RelativeToolTip": "Models\\Product.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-23T12:06:54.293Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Order.cs",
+              "DocumentMoniker": "E:\\programming\\Asp.net Core\\EF ( EntityFrameWork )\\ShopManagement\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "Models\\Order.cs",
+              "ToolTip": "E:\\programming\\Asp.net Core\\EF ( EntityFrameWork )\\ShopManagement\\Models\\Order.cs",
+              "RelativeToolTip": "Models\\Order.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAA1wCIAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-23T11:54:44.297Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
