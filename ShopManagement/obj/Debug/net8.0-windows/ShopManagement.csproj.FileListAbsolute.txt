@@ -29,3 +29,4 @@ E:\programming\Asp.net Core\EF ( EntityFrameWork )\ShopManagement\ShopManagement
 E:\programming\Asp.net Core\EF ( EntityFrameWork )\ShopManagement\ShopManagement\bin\Debug\net8.0-windows\Models.dll.config
 E:\programming\Asp.net Core\EF ( EntityFrameWork )\ShopManagement\ShopManagement\obj\Debug\net8.0-windows\ShopMana.130DC1FC.Up2Date
 E:\programming\Asp.net Core\EF ( EntityFrameWork )\ShopManagement\ShopManagement\obj\Debug\net8.0-windows\ShopManagement.sourcelink.json
+E:\programming\Asp.net Core\EF ( EntityFrameWork )\ShopManagement\ShopManagement\obj\Debug\net8.0-windows\ShopManagement.Form3.resources

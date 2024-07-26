@@ -26,15 +26,66 @@ namespace ShopManagement
 
         public Models.User CurrentUser;
 
+        public int Temp_Products_SelectedIndex;
+        public int Temp_Orders_SelectedIndex;
+
+
         public Form2()
         {
             InitializeComponent();
         }
+
+        private void UpdateProductListBox()
+        {
+            Models.DatabaseContext DatabaseContext = null;
+            DatabaseContext = new Models.DatabaseContext();
+
+            var products = DatabaseContext.Products.ToList();
+
+            BindingList<Product> ProductsBL = new BindingList<Product>(products);
+
+            ProductsListBox.DataSource = ProductsBL;
+
+            OrdersListBox.SelectedIndex = Temp_Orders_SelectedIndex;
+            ProductsListBox.SelectedIndex = Temp_Products_SelectedIndex;
+
+        }
+
+        private void UpdateOrderListBoxAndOrderProducts()
+        {
+            DatabaseContext = null;
+            try
+            {
+                DatabaseContext = new Models.DatabaseContext();
+                var UserOrders = DatabaseContext.Orders.Where(current => current.User.ID == CurrentUser.ID).ToList();
+
+                var Orders = UserOrders;
+
+                BindingList<Order> OrdersBL = new BindingList<Order>(Orders);
+
+                OrdersListBox.DataSource = OrdersBL;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (DatabaseContext != null)
+                {
+                    DatabaseContext.Dispose();
+                    DatabaseContext = null;
+                }
+            }
+        }
+
         private void LogoutBtn_Click(object sender, EventArgs e)
         {
             Username = string.Empty;
             Password = string.Empty;
             IsLogin = false;
+            ProductUpdateTimer.Enabled = false;
 
             this.Hide();
             Form1 form1 = new Form1();
@@ -44,10 +95,13 @@ namespace ShopManagement
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            //ProductUpdateTimer.Enabled = true;
             UsernameLbl.Text = AppState.Instance.Username;
             DatabaseContext = null;
             OrdersListBox.DataSource = null;
+
+            Temp_Products_SelectedIndex = 0;
+            Temp_Orders_SelectedIndex = 0;
 
             try
             {
@@ -84,75 +138,10 @@ namespace ShopManagement
             }
         }
 
-        private void DoTheTest_Click(object sender, EventArgs e)
-        {
-            DatabaseContext = null;
-
-            try
-            {
-                DatabaseContext = new DatabaseContext();
-
-                var CurrentUser = DatabaseContext.Users.Where(current => current.UserName == Username && current.Password == Password).ToList().FirstOrDefault() ?? new Models.User();
-                var CustomeCategory = DatabaseContext.Categories.Where(current => current.Name == "Laptop").ToList().FirstOrDefault() ?? new Category();
-                //var Iphone13Promax = DatabaseContext.Products.Where(current => current.Name == "IPhone 13 promax").ToList().FirstOrDefault() ?? new Product();
-
-                #region Add New Order
-                //Order order1 = new Order();
-                //order1.User = CurrentUser;
-
-                //order1.Products = new List<Product>();
-
-                //order1.Products.Add(Iphone13Promax);
-
-                //DatabaseContext.Orders.Add(order1);
-
-                //DatabaseContext.SaveChanges();
-                #endregion
-
-                #region Add New Product
-                //Product product = new Product();
-                //product.Name = "Asus VivoBook";
-                //product.Description = "this description for Asus VivoBook";
-                //product.Category = CustomeCategory;
-                //product.Price = 500;
-                //product.PicName = " ";
-                //product.Orders = new List<Order>();
-
-                //DatabaseContext.Products.Add(product);
-
-                //DatabaseContext.SaveChanges();
-                #endregion
-
-                #region New Category
-                Category category = new Category();
-
-                category.Name = "Laptop";
-                category.Products = new List<Product>();
-
-                DatabaseContext.Categories.Add(category);
-
-                DatabaseContext.SaveChanges();
-
-                #endregion
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error in Form2 : " + ex.Message);
-            }
-            finally
-            {
-                if (DatabaseContext != null)
-                {
-                    DatabaseContext.Dispose();
-                    DatabaseContext = null;
-                }
-            }
-        }
-
         private void ProductsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             DatabaseContext = null;
-
+            Temp_Products_SelectedIndex = ProductsListBox.SelectedIndex;
             try
             {
                 DatabaseContext = new DatabaseContext();
@@ -182,7 +171,7 @@ namespace ShopManagement
         private void OrdersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             DatabaseContext = null;
-
+            Temp_Orders_SelectedIndex = OrdersListBox.SelectedIndex;
             try
             {
                 DatabaseContext = new DatabaseContext();
@@ -242,12 +231,11 @@ namespace ShopManagement
                 DatabaseContext.Orders.AddOrUpdate(SelectedOrder);
 
                 DatabaseContext.SaveChanges();
-
-                OrdersListBox.SelectedIndex = cur;
+                UpdateOrderListBoxAndOrderProducts();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error in Form2 : " + ex.Message);
+                MessageBox.Show("please add an Order and then select your product");
             }
             finally
             {
@@ -274,7 +262,105 @@ namespace ShopManagement
 
             DatabaseContext.Orders.Add(NewOrder);
             DatabaseContext.SaveChanges();
+            UpdateOrderListBoxAndOrderProducts();
+        }
 
+        private void DeleteProductBtn_Click(object sender, EventArgs e)
+        {
+            DatabaseContext = null;
+
+            try
+            {
+                DatabaseContext = new DatabaseContext();
+                var CurrentUser = DatabaseContext.Users.Where(current => current.UserName == Username && current.Password == Password).ToList().FirstOrDefault() ?? new Models.User();
+
+                var cur = OrdersListBox.SelectedIndex;
+                var Orders = DatabaseContext.Orders.Where(current => current.User.ID == CurrentUser.ID).ToList();
+                var SelectedOrder = Orders[cur];
+
+                var curProduct = EditProductsListBox.SelectedIndex;
+
+                var ProductsInOrder = SelectedOrder.Products.ToList();
+                Product? SelectedProduct = ProductsInOrder[curProduct];
+
+                //DatabaseContext.
+                SelectedOrder.Products.Remove(SelectedProduct);
+
+                DatabaseContext.SaveChanges();
+                MessageBox.Show("Product Removed Successfuly from Selected Order");
+                UpdateOrderListBoxAndOrderProducts();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (DatabaseContext != null)
+                {
+                    DatabaseContext.Dispose();
+                    DatabaseContext = null;
+                }
+            }
+        }
+
+        private void ProductUpdateTimer_Tick(object sender, EventArgs e)
+        {
+            //UpdateProductListBox();
+            //UpdateOrderListBoxAndOrderProducts();
+        }
+
+        private void AdminPanelBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Form3 form3 = new Form3();
+            form3.Show();
+        }
+
+        private void DeleteOrderBtn_Click(object sender, EventArgs e)
+        {
+            DatabaseContext = null;
+
+            try
+            {
+                DatabaseContext = new DatabaseContext();
+
+                var CurrentUser = DatabaseContext.Users.Where(current => current.UserName == Username && current.Password == Password).ToList().FirstOrDefault() ?? new Models.User();
+
+                var UserOrders = DatabaseContext.Orders.Where(current => current.User.ID == CurrentUser.ID).ToList();
+
+                var Order = UserOrders[OrdersListBox.SelectedIndex];
+
+                for (int i = 0; i <= Order.Products.Count - 1; i++)
+                {
+                    Order.Products.RemoveAt(i);
+                }
+
+                DatabaseContext.Orders.Remove(Order);
+
+                DatabaseContext.SaveChanges();
+
+                BindingList<Product> ProductsBL = new BindingList<Product>();
+                EditProductsListBox.DataSource = ProductsBL;
+
+
+                UpdateOrderListBoxAndOrderProducts();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error in Form2 : " + ex.Message);
+            }
+            finally
+            {
+                if (DatabaseContext != null)
+                {
+                    DatabaseContext.Dispose();
+                    DatabaseContext = null;
+                }
+            }
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             ProductsListBox = new ListBox();
             label1 = new Label();
             Label77777 = new Label();
@@ -41,13 +42,14 @@
             label5 = new Label();
             CategoryLbl = new Label();
             AddNewOrder = new Button();
-            DoTheTest = new Button();
+            DeleteOrderBtn = new Button();
             label4 = new Label();
             PriceLbl = new Label();
             ProductDescTxt = new TextBox();
             label6 = new Label();
             AdminPanelBtn = new Button();
             AddSPTSO = new Button();
+            ProductUpdateTimer = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // ProductsListBox
@@ -143,6 +145,7 @@
             DeleteProductBtn.TabIndex = 7;
             DeleteProductBtn.Text = "Delete Product From Order";
             DeleteProductBtn.UseVisualStyleBackColor = true;
+            DeleteProductBtn.Click += DeleteProductBtn_Click;
             // 
             // label5
             // 
@@ -173,15 +176,15 @@
             AddNewOrder.UseVisualStyleBackColor = true;
             AddNewOrder.Click += AddNewOrder_Click;
             // 
-            // DoTheTest
+            // DeleteOrderBtn
             // 
-            DoTheTest.Location = new Point(12, 676);
-            DoTheTest.Name = "DoTheTest";
-            DoTheTest.Size = new Size(302, 29);
-            DoTheTest.TabIndex = 9;
-            DoTheTest.Text = "Cusom Function";
-            DoTheTest.UseVisualStyleBackColor = true;
-            DoTheTest.Click += DoTheTest_Click;
+            DeleteOrderBtn.Location = new Point(12, 676);
+            DeleteOrderBtn.Name = "DeleteOrderBtn";
+            DeleteOrderBtn.Size = new Size(302, 29);
+            DeleteOrderBtn.TabIndex = 9;
+            DeleteOrderBtn.Text = "Delete Order";
+            DeleteOrderBtn.UseVisualStyleBackColor = true;
+            DeleteOrderBtn.Click += DeleteOrderBtn_Click;
             // 
             // label4
             // 
@@ -227,6 +230,7 @@
             AdminPanelBtn.TabIndex = 13;
             AdminPanelBtn.Text = "Admin Panel";
             AdminPanelBtn.UseVisualStyleBackColor = true;
+            AdminPanelBtn.Click += AdminPanelBtn_Click;
             // 
             // AddSPTSO
             // 
@@ -238,6 +242,11 @@
             AddSPTSO.UseVisualStyleBackColor = true;
             AddSPTSO.Click += AddSPTSO_Click;
             // 
+            // ProductUpdateTimer
+            // 
+            ProductUpdateTimer.Interval = 10000;
+            ProductUpdateTimer.Tick += ProductUpdateTimer_Tick;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -248,7 +257,7 @@
             Controls.Add(label6);
             Controls.Add(ProductDescTxt);
             Controls.Add(label4);
-            Controls.Add(DoTheTest);
+            Controls.Add(DeleteOrderBtn);
             Controls.Add(AddNewOrder);
             Controls.Add(DeleteProductBtn);
             Controls.Add(EditProductsListBox);
@@ -287,12 +296,13 @@
         private Label label5;
         private Label CategoryLbl;
         private Button AddNewOrder;
-        private Button DoTheTest;
+        private Button DeleteOrderBtn;
         private Label label4;
         private Label PriceLbl;
         private TextBox ProductDescTxt;
         private Label label6;
         private Button AdminPanelBtn;
         private Button AddSPTSO;
+        private System.Windows.Forms.Timer ProductUpdateTimer;
     }
 }
